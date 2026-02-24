@@ -14,7 +14,7 @@ function EditModal({ project, isFetching }) {
     category: project?.category || "",
   });
 
-  const [img, setImg] = useState(null);
+  const [img, setImg] = useState(project?.thumbnailImage || "");
   const [images, setImages] = useState(project?.images || []);
   const multiImgRef = useRef(null);
   const [previewImages, setPreviewImages] = useState([]); // ✅ Fix: This was missing!
@@ -88,6 +88,7 @@ function EditModal({ project, isFetching }) {
                 e.preventDefault();
                 updateProject(project._id, {
                   ...formData,
+                  thumbnailImage: img,
                   newImages,
                   removeImages,
                 });
